@@ -1,0 +1,102 @@
+// src/index.scss
+
+// @import "./styles/variables_warm"; // Вариант 1: "Теплая элегантность"
+@import "./styles/variables_fresh"; // Вариант 2: "Свежая современность"
+// @import "./styles/variables_calm"; // Вариант 3: "Мягкое спокойствие"
+
+// Переопределяем переменные Bootstrap
+$primary: $accent-color;
+$font-family-sans-serif: $font-family-base;
+$headings-font-family: $font-family-headings;
+
+// Импортируем Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Ваши собственные стили
+body {
+  font-family: $font-family-base;
+  color: $text-color;
+  background-color: $background-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-headings;
+}
+
+.hero {
+  background-color: rgba($primary-color, 0.7); // Добавил прозрачность
+  // background-image: url('path/to/your/image.jpg'); // Раскомментируйте и добавьте путь к изображению
+  background-size: cover;
+  background-position: center;
+  color: $text-color; //Задаём явно цвет текста
+
+  h1 {
+    color: $accent-color;
+  }
+  p {
+    color: $text-color
+  }
+}
+
+.bg-light {
+    background-color: rgba($secondary-color, 0.7) !important; // Добавил прозрачность
+}
+
+// Стили для Header
+.navbar-light {
+  .navbar-brand {
+    color: $accent-color;
+
+    &:hover {
+      color: darken($accent-color, 10%);
+    }
+  }
+
+  .nav-link-custom {
+    color: $text-color;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+
+    &:hover {
+      color: $accent-color;
+      text-decoration: underline;
+    }
+
+    &.active {
+      color: $accent-color;
+      font-weight: bold;
+    }
+  }
+}
+
+.news-item {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+  .card-body{
+    color: $text-color;
+  }
+}
+
+footer {
+  .text-muted {
+      color: lighten($text-color, 20%) !important; // Скорректировал цвет
+  }
+a {
+  transition: color 0.2s;
+      &:hover {
+          color: $accent-color;
+      }
+}
+}
+
+// Добавляем отступы между секциями
+.mt-custom {
+  margin-top: 3rem;
+}
+.mb-custom {
+  margin-bottom: 3rem;
+}
