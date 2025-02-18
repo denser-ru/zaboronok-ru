@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/zaboronok-ru/static/css/main.38fe6a25.css",
+    "main.js": "/zaboronok-ru/static/js/main.6fd2572b.js",
+    "index.html": "/zaboronok-ru/index.html",
+    "main.38fe6a25.css.map": "/zaboronok-ru/static/css/main.38fe6a25.css.map",
+    "main.6fd2572b.js.map": "/zaboronok-ru/static/js/main.6fd2572b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.38fe6a25.css",
+    "static/js/main.6fd2572b.js"
+  ]
+}
