@@ -1,30 +1,37 @@
 import React from 'react';
-import { Carousel, Modal, Button } from 'react-bootstrap'; // Используем Carousel и Modal
+import { Carousel, Modal } from 'react-bootstrap'; // Используем Carousel и Modal
 
 function GalleryContent() {
-  // Заглушки для изображений
-  const images = [
-    { id: 1, src: 'placeholder-image1.jpg', alt: 'Image 1' },
-    { id: 2, src: 'placeholder-image2.jpg', alt: 'Image 2' },
-    { id: 3, src: 'placeholder-image3.jpg', alt: 'Image 3' },
-  ];
+  // Функция для импорта всех изображений из папки gallery
+  const importAll = (r) => {
+    let images = {};
+    r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images;
+  }
 
-    const [showModal, setShowModal] = React.useState(false);
-    const [currentImage, setCurrentImage] = React.useState(null);
+  const imageFiles = importAll(require.context('../assets/gallery', false, /\.(png|jpe?g|svg)$/)); // Импорт всех png, jpg, jpeg из папки gallery
+  const images = Object.keys(imageFiles).map((filename, index) => ({
+    id: index + 1,
+    src: imageFiles[filename], // Используем импортированный путь к изображению
+    alt: `Фотография ${index + 1}`, // Или можно использовать filename для alt-текста
+  }));
 
-    const handleImageClick = (image) => {
-        setCurrentImage(image);
-        setShowModal(true);
-    };
+  const [showModal, setShowModal] = React.useState(false);
+  const [currentImage, setCurrentImage] = React.useState(null);
 
-    const handleCloseModal = () => {
-        setShowModal(false);
-        setCurrentImage(null);
-    };
+  const handleImageClick = (image) => {
+    setCurrentImage(image);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setCurrentImage(null);
+  };
 
   return (
     <div>
-        <h1>Галерея</h1>
+      <h1>Галерея</h1>
       <Carousel>
         {images.map((image) => (
           <Carousel.Item key={image.id}>
@@ -33,7 +40,12 @@ function GalleryContent() {
               src={image.src}
               alt={image.alt}
               onClick={() => handleImageClick(image)} // Добавляем обработчик клика
-              style={{cursor: 'pointer'}} //Меняем курсор при наведении
+              style={{
+                cursor: 'pointer',
+                maxHeight: '500px',
+                width: 'auto',
+                objectFit: 'contain' // <---- Добавили object-fit: contain
+              }}
             />
             <Carousel.Caption>
               <h3>{image.alt}</h3>
@@ -41,15 +53,23 @@ function GalleryContent() {
           </Carousel.Item>
         ))}
       </Carousel>
-        {/* Модальное окно */}
-        <Modal show={showModal} onHide={handleCloseModal} size="lg">
-            <Modal.Header closeButton>
-                <Modal.Title>{currentImage?.alt}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <img src={currentImage?.src} alt={currentImage?.alt} className="img-fluid" />
-            </Modal.Body>
-        </Modal>
+      {/* Модальное окно */}
+      <Modal show={showModal} onHide={handleCloseModal} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>{currentImage?.alt}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <img
+            src={currentImage?.src}
+            alt={currentImage?.alt}
+            className="img-fluid"
+            style={{
+              maxWidth: '90%',
+              objectFit: 'contain' // <---- Добавили object-fit: contain и сюда
+            }}
+          />
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

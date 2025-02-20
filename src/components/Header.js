@@ -1,13 +1,19 @@
 import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import logo from '../assets/images/logo.jpg';
 
 function Header() {
   return (
     <Navbar bg="light" expand="lg" variant="light">
       <Container>
         <Navbar.Brand as={Link} to="/" className="fw-bold fs-3">
-          Екатерина Заборонок
+          <Image
+            src={logo}
+            alt="Логотип Екатерина Заборонок"
+            height="30"
+            className="d-inline-block align-top"
+          />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

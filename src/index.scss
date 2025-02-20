@@ -24,14 +24,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero {
-  background-color: rgba($primary-color, 0.7); // Добавил прозрачность
-  // background-image: url('path/to/your/image.jpg'); // Раскомментируйте и добавьте путь к изображению
+  background-color: rgba($primary-color, 0.7);
   background-size: cover;
   background-position: center;
-  color: $text-color; //Задаём явно цвет текста
+  color: $text-color;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+
 
   h1 {
     color: $accent-color;
+    font-size: 3.5rem;
   }
   p {
     color: $text-color
@@ -39,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bg-light {
-    background-color: rgba($secondary-color, 0.7) !important; // Добавил прозрачность
+    background-color: rgba($secondary-color, 0.7) !important;
 }
 
 // Стили для Header
@@ -54,8 +57,9 @@ h1, h2, h3, h4, h5, h6 {
 
   .nav-link-custom {
     color: $text-color;
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
 
     &:hover {
       color: $accent-color;
@@ -65,6 +69,7 @@ h1, h2, h3, h4, h5, h6 {
     &.active {
       color: $accent-color;
       font-weight: bold;
+      text-decoration: underline;
     }
   }
 }
@@ -79,11 +84,22 @@ h1, h2, h3, h4, h5, h6 {
   .card-body{
     color: $text-color;
   }
+  .card-subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.mb-4.mb-custom-news-section-title {
+    margin-bottom: 2.5rem !important;
 }
 
 footer {
   .text-muted {
-      color: lighten($text-color, 20%) !important; // Скорректировал цвет
+      color: lighten($text-color, 20%) !important;
   }
 a {
   transition: color 0.2s;
@@ -99,4 +115,95 @@ a {
 }
 .mb-custom {
   margin-bottom: 3rem;
+}
+
+.d-flex.justify-content-around.mb-4 {
+  button.btn.btn-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none !important;
+    color: $text-color;
+
+    svg {
+      margin-bottom: 0.5rem;
+      transition: color 0.2s ease-in-out;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      color: $accent-color;
+      svg {
+        color: $accent-color;
+      }
+    }
+  }
+}
+
+.webinar-item {
+  .card-body {
+    button.btn.btn-primary {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.sheet-music-item {
+  .card-body {
+    button.btn.btn-primary {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.home-page-about {
+  background-color: transparent;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: -2rem;
+}
+
+.carousel {
+  .carousel-control-prev,
+  .carousel-control-next {
+    // Абсолютное позиционирование, чтобы переместить стрелочки
+    position: absolute;
+    top: 50%; /* Вертикальное положение по центру */
+    bottom: auto; /* Отключаем bottom, чтобы работал top: 50% */
+    transform: translateY(-50%); /* Вертикальное центрирование */
+    color: $accent-color; /* Цвет стрелочек */
+    opacity: 0.7; /* Полупрозрачность, чтобы не сильно отвлекали */
+    transition: opacity 0.3s ease; /* Плавное изменение прозрачности при наведении */
+
+    &:hover {
+      opacity: 1; /* Делаем стрелочки более видимыми при наведении */
+      color: darken($accent-color, 15%); /* Немного затемняем цвет при наведении */
+    }
+
+    // Стили для иконок (SVG) внутри стрелочек
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: white; /* <---- Изменили цвет фона иконок на БЕЛЫЙ */
+      mask-size: 20px 20px;
+      -webkit-mask-size: 20px 20px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: black; /* <---- Изменили цвет фона круга на ЧЕРНЫЙ */
+      border: 2px solid white; /* <---- Увеличили толщину и цвет обводки на БЕЛЫЙ */
+      // background-color: rgba($background-color, 0.5); /* Закомментировали старый полупрозрачный фон */
+      // border: 1px solid $accent-color; /* Закомментировали старую обводку */
+    }
+  }
+
+  .carousel-control-prev {
+    left: 15px; /* Отступ слева */
+  }
+
+  .carousel-control-next {
+    right: 15px; /* Отступ справа */
+  }
 }
